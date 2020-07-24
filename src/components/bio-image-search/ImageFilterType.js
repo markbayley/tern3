@@ -1,6 +1,7 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
+import IconButton from "./IconButton";
 
 const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
   const icons = [
@@ -21,6 +22,8 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
       icon: <img src="/img/LAI.svg" alt="" />,
     },
   ];
+
+
 
   return (
     <div style={{ marginLeft: "1%" }} key="key">
@@ -44,8 +47,10 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
               variant="outline"
               onClick={() => handleFilter(header + "=")}
             >
+             
               {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
-              <img src="/img/quickview.svg" width="40px" alt="" />
+              {/*<img src="/img/quickview.svg" width="40px" alt="" />*/}
+              <IconButton />
             </Button>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">

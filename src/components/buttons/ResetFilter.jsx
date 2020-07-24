@@ -7,6 +7,7 @@ function ResetFilter(props) {
         style={{ padding: "0px 3px 0px 3px", float: "right" }}
         variant="reset"
         size="sm"
+        onClick={props.resetFilter}
       >
         <img src="/img/icons/reset-icon-white.png" alt="reset" width="30px" />
       </Button>

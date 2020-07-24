@@ -11,6 +11,7 @@ const ImageFilter = ({ value, handleFilter }) => {
              style={{ textTransform: "capitalize" }}
              label={value.label}
              onClick={handleFilter}
+             
            />
            {/* {value.doc_count} */}
          </Form.Group>

@@ -25,6 +25,9 @@ import FavouriteHeader from "./components/bio-favourites/FavouriteHeader";
 import FilterHeader from "./components/bio-image-search/FilterHeader";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
+import { FeatureGroup, Circle } from 'react-leaflet';
+import { EditControl } from "react-leaflet-draw";
+
 const base_image_url =
   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
@@ -136,6 +139,10 @@ class App extends React.Component {
   //   console.log("resetSiteID", this.state);
   // }
 
+  resetFilter() {
+    this.setState({selectedFilter:{}})
+  }
+
   handleFilter(i) {
     const selectedFilter = this.state.selectedFilter;
 
@@ -187,7 +194,7 @@ class App extends React.Component {
       <div id="map">
         <TopBar />
         <SearchBar />
-        <MapNav />
+ 
         <Row>
           {/*Filter SideBar*/}
           <Col
@@ -195,7 +202,7 @@ class App extends React.Component {
             xl={2}
             style={{ zIndex: "9" , margin: "0", paddingRight: "0"}}
           >
-            <FilterHeader />
+            <FilterHeader resetFilter={ ()=> {this.resetFilter()}}/>
             <ImageSearchEngine
               imageFilters={this.state.filters}
               handleFilter={(i) => this.handleFilter(i)}
@@ -247,6 +254,20 @@ class App extends React.Component {
                       attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
                       url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     />
+                  
+             
+                  <FeatureGroup>
+                      <EditControl
+                     
+                        position='topright'
+                        onEdited={this._onEditPath}
+                        onCreated={this._onCreate}
+                        onDeleted={this._onDeleted}
+                    
+                      />
+                      <Circle center={[51.51, -0.06]} radius={200} />
+                    </FeatureGroup>
+             
 
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
