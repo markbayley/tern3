@@ -28,6 +28,7 @@ import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import { FeatureGroup, Circle } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 import Search from "./components/Search";
+import TopHeader from "./components/TopHeader";
 
 // const base_image_url =
 //   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
@@ -193,7 +194,8 @@ class App extends React.Component {
 
     return (
       <div id="map">
-        <TopBar />
+      
+        <TopHeader />
         <Search />
  
         <Row>

@@ -57,7 +57,7 @@ function Search() {
        
           bg="white"
       
-          style={{ borderBottom: "1.5px solid #6EB3A6" }}
+          style={{ borderBottom: "1.5px solid #6EB3A6", height: "100px" }}
         >
           <Navbar.Toggle />
          
