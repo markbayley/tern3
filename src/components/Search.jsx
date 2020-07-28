@@ -14,23 +14,13 @@ import {
 import axios from "axios";
 import LoginButton from "./buttons/LoginButton";
 import RegisterButton from "./buttons/RegisterButton";
-
-//import MainBanner from './banners/MainBanner';
-//import SignIn from './signin/SignIn';
-//import MainFooter from './footers/MainFooter';
-
-//import BioimagesSubFooter from './footers/BioimagesSubFooter'
-//import MapSearch from './MapSearch';
-
-//import TernAPI from './test/TernAPI';
-//import Query from './test/Query';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { findByLabelText } from "@testing-library/react";
 
 {
   /* Connects to another test API unsplash, not the TERN API as yet, need to change over*/
 }
-function SearchBar() {
+function Search() {
   const [term, setPhoto] = useState("");
   const [clientId, setClientId] = useState(
     "52d5d5565994d57c3160b4296aef1be1bf8985d9265e313f0f9db7eb1145d86d"
@@ -64,34 +54,28 @@ function SearchBar() {
   return (
     <Router>
         <Navbar
+       
           bg="white"
-          expand="lg"
-          style={{ height: "4%", borderBottom: "1.5px solid #6EB3A6" }}
+      
+          style={{ borderBottom: "1.5px solid #6EB3A6" }}
         >
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Col sm={2} style={{ position: "absolute", left: "0%"}}>
-              <Navbar.Brand>
-                <div className="site-branding">
+          <Navbar.Toggle />
+         
+        
+              <div className="ternlogo">          
                   <Link to="/">
-                    <img src="img/logo@3x.png" alt="" />
-                  </Link>
-                </div>
-              </Navbar.Brand>
-            </Col>
+                    <Image src="img/logo@3x.png" alt="tern logo" width="300px" />
+                  </Link>        
+              </div>
 
-            <Container>
-              <Col
-                style={{
-                  height: "100px",
-                }}
-              >
+
+              
+              <Col xl={9} style={{ display: 'flex' , justifyContent: 'space-around', alignItems: 'center'}}>
+               <div className="biologo">
                 <h3
-                  style={{
-                    position: "absolute",
-                    right: "83%",
-                    top: "30%",
+              style={{           
                     color: "#6EB3A6",
+                    marginTop: "5%",
                   }}
                 >
                   <Image
@@ -106,9 +90,10 @@ function SearchBar() {
                   />
                   Bioimages
                 </h3>
+                </div>
 
                 {/*Search Input */}
-                <div>
+                <div className="search">
                 <InputGroup
                   inline="true"
                   className="searchbar"
@@ -117,9 +102,9 @@ function SearchBar() {
                     width: "455px",
                     paddingLeft: "2%",
 
-                    position: "absolute",
-                    right: "28%",
-                    top: "19%",
+                    // position: "absolute",
+                    // right: "28%",
+                    // top: "19%",
                   }}
                 >
                   <Image
@@ -160,15 +145,16 @@ function SearchBar() {
                   ></Button>
                 </InputGroup>
                 </div>
+
                 {/*End of Search Input */}
-              </Col>
-  
-              {/*Login Buttons */}
+
+                   {/*Login Buttons */}
+              <div className="login">
               <Link to="/login" 
               style={{            
-                    position: "absolute",
-                    right: "24.2%",
-                    top: "33%"
+                    // position: "absolute",
+                    // right: "24.2%",
+                    // top: "33%"
                   }}>
                 {" "}
                 <LoginButton />{" "}
@@ -176,77 +162,22 @@ function SearchBar() {
 
               <Link to="/login" 
               style={{    
-                position: "absolute",
-                right: "18.9%",
-                top: "33%" 
+                // position: "absolute",
+                // right: "18.9%",
+                // top: "33%" 
               }}>
                 {" "}
                 <RegisterButton />{" "}
               </Link>
-           
-            </Container>
-          </Navbar.Collapse>
+              </div>
+              </Col>
+  
+ 
+
+
+       
         </Navbar>
 
-        {/*Search Results */}
-        <Container style={{ paddingLeft: "3%" }}>
-          <Row>
-            {result.map((term) => (
-              <div>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Image Title</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Image src={term.urls.small} width="465px" height="465px" />
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="outline-secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="outline-secondary" onClick={handleClose}>
-                      Download
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-
-                <Image
-                  onClick={handleShow}
-                  src={term.urls.small}
-                  width="210px"
-                  height="210px"
-                  style={{ margin: "10px 13px 10px 13px" }}
-                />
-                <br />
-                <Form style={{ paddingTop: "5px" }}>
-                  {["radio"].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
-                      <Form.Check
-                        type={type}
-                        id={`inline-${type}-1`}
-                        inline
-                        label="View"
-                      />
-                      <Form.Check
-                        inline
-                        label="Select"
-                        type={type}
-                        id={`inline-${type}-2`}
-                      />
-                      <Form.Check
-                        inline
-                        label="Download"
-                        type={type}
-                        id={`inline-${type}-3`}
-                      />
-                    </div>
-                  ))}
-                </Form>
-              </div>
-            ))}
-          </Row>
-        </Container>
-        {/*End of Search Results */}
 
         <Switch>
           <Route
@@ -263,4 +194,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default Search;

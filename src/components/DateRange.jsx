@@ -32,9 +32,9 @@ class DateRange extends React.Component {
   render() {
     return (
     <>
-      <div  style={{borderRight: "55px solid rgba(149, 219, 199, 0.5)", marginLeft: "30px"}}>
+      <div  style={{borderRight: "55px solid rgba(149, 219, 199, 0.5)", marginLeft: "15px"}}>
         <h6 
-          style={{ paddingTop: "10%", color: "#065f65", fontWeight: "500", paddingLeft: "40px" }}
+          style={{ paddingTop: "5%", color: "#065f65", fontWeight: "500", paddingLeft: "10px" }}
         > 
           Date Range
         </h6>
@@ -62,8 +62,8 @@ class DateRange extends React.Component {
    style={{
      border: "0.5px solid #66b3a6",
      marginTop: "0%",
-     marginBottom: "0.5%",
-     marginLeft: "5px"
+     marginBottom: "0%",
+     marginLeft: "3px"
    }}
  ></hr>
 

@@ -27,9 +27,10 @@ import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 import { FeatureGroup, Circle } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
+import Search from "./components/Search";
 
-const base_image_url =
-  "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
+// const base_image_url =
+//   "https://swift.rc.nectar.org.au/v1/AUTH_05bca33fce34447ba7033b9305947f11/";
 
 /*Photo Gallery*/
 /*Photo Gallery Item*/
@@ -48,6 +49,7 @@ const base_image_url =
 //   );
 // }
 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -65,8 +67,7 @@ class App extends React.Component {
       lat: -26.47,
       lng: 134.02,
       zoom: 5,
-      maxZoom: 6,
-      minZoom: 5,
+    
     };
   }
 
@@ -79,6 +80,7 @@ class App extends React.Component {
     //   }
     // }
   }*/
+
 
   fetchFavourites() {
     // Where we're fetching data from
@@ -131,22 +133,20 @@ class App extends React.Component {
 
   filterSiteID(id) {
     this.setState({ selectedFilter: { site_id: id } });
-    console.log("filterSiteID", this.state);
+    console.log("clicked marker", this.state);
   }
 
-  // resetSiteID(id) {
-  //   this.setState({ selectedFilter: { site_id: null } });
-  //   console.log("resetSiteID", this.state);
-  // }
+
 
   resetFilter() {
-    this.setState({selectedFilter:{}})
+    this.setState({selectedFilter:{ site_id: {}}})
+    console.log("clicked refresh button", this.state);
   }
 
   handleFilter(i) {
     const selectedFilter = this.state.selectedFilter;
 
-    console.log("HELLO MARK", i);
+    console.log("selectedFilter(i)", i);
     var arr = i.split("=");
     selectedFilter[arr[0]] = arr[1];
     if (arr[0] !== "_id") {
@@ -190,10 +190,11 @@ class App extends React.Component {
       key: "selection",
     };
 
+
     return (
       <div id="map">
         <TopBar />
-        <SearchBar />
+        <Search />
  
         <Row>
           {/*Filter SideBar*/}
@@ -202,11 +203,16 @@ class App extends React.Component {
             xl={2}
             style={{ zIndex: "9" , margin: "0", paddingRight: "0"}}
           >
-            <FilterHeader resetFilter={ ()=> {this.resetFilter()}}/>
+            <FilterHeader resetFilter={()=> {this.resetFilter()}}/>
             <ImageSearchEngine
               imageFilters={this.state.filters}
-              handleFilter={(i) => this.handleFilter(i)}
+              handleFilter={(i) => {
+                console.log("clicked the facet", this.props, this.state);
+                this.handleFilter(i)}
+              }
             />
+
+           
 
             <DateRange />
             <FavouriteHeader />
@@ -239,6 +245,7 @@ class App extends React.Component {
                     center={position}
                     zoom={this.state.zoom}
                     style={{ zIndex: "1" }}
+                    scrollWheelZoom={false}
                   >
                     <TileLayer
                       attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
@@ -260,6 +267,7 @@ class App extends React.Component {
                       <EditControl
                      
                         position='topright'
+                        
                         onEdited={this._onEditPath}
                         onCreated={this._onCreate}
                         onDeleted={this._onDeleted}
@@ -276,7 +284,7 @@ class App extends React.Component {
                         location={index}
                         key={index}
                         onClick={() => {
-                          console.log("test", this.props, this.state);
+                          console.log("clicked the marker", this.props, this.state);
                           this.handleFilter("site_id=" + index);
                           // scroller.scrollTo("gallery", {
                           //   duration: 1000,
@@ -290,14 +298,18 @@ class App extends React.Component {
               </div>
               {/*End of Leaflet  Map */}
 
-              <BreadCrumb />
+              <BreadCrumb/>
+             
             
               {/*Photo Gallery */}
               <div id="gallery"></div>
               <SearchEngine
                 bioImageDocuments={this.state.hits}
                 aggregation={this.state.aggregation}
-                onBioImageClick={(i) => this.handleFilter(i)}
+                onBioImageClick={(i) => {
+                  console.log("clicked the image", this.props, this.state);
+                  this.handleFilter(i)}
+                }
               />
             </div>
             <ul>{favs}</ul>

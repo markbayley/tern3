@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Card, Button } from "react-bootstrap";
+import { Accordion, Card, Button, Col } from "react-bootstrap";
 import ImageFilter from "./ImageFilter";
 import IconButton from "./IconButton";
 
@@ -32,27 +32,33 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
           <Accordion.Toggle
             as={Card.Header}
             eventKey="0"
+            onClick={() => handleFilter(header + "=")}
             style={{
               backgroundColor: "#fff",
-              borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+             borderRight: "55px solid rgba(149, 219, 199, 0.5)",
+              textTransform: "capitalize",
+              color: "#065f65",
+              fontWeight: "500",
+              display: "flex",
+              alignItems: "center",
+              
             }}
           >
-            <Button
-              style={{
-                width: "105%",
-                textTransform: "capitalize",
-                color: "#065f65",
-                fontWeight: "500",
-              }}
-              variant="outline"
-              onClick={() => handleFilter(header + "=")}
-            >
-             
+        
+        
+            
               {header.replace("_", " ").replace("_", " ").replace("d", "D")}{" "}
               {/*<img src="/img/quickview.svg" width="40px" alt="" />*/}
-              <IconButton />
-            </Button>
+             
+           <Col style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <IconButton className="icon" />
+              </Col>
+      
+           
+           
+         
           </Accordion.Toggle>
+         
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <ul>

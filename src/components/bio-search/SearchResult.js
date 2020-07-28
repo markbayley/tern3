@@ -12,22 +12,7 @@ const SearchResult = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <>
-     <style type="text/css">
-    {`
-    .btn-flat {
-      background-color: #fff;
-      color:  #00565D;
-      border: 1px solid #00565D;
-    }
-    .btn-flat:hover {
-      background-color: #00565D;
-      color:  #fff;
-      border: 1px solid #00565D;
-    }
-    
-    `}
-    </style>
+   
 
     <Col xl={3}>
       <Modal size="lg" show={show} onHide={handleClose}>
@@ -44,11 +29,13 @@ const SearchResult = ({
               </Navbar.Brand>
               </Col>
               <Col style={{ position: "relative", left: "230%", width: "100%" }}>
-              <h5>
+              <h6>
             Site: {bioImageDocument.site_id.label} <br />
             Image Type: {bioImageDocument.image_type.value} <br />
-            Image Count: {bioImageDocument.doc_count}
-            </h5>
+            Image Count: {bioImageDocument.doc_count} <br />
+            Plot: {bioImageDocument.plot.value}{" "} <br />
+            Date: {bioImageDocument.site_visit_id}{" "}
+            </h6>
             </Col>
           </Modal.Title>
         </Modal.Header>
@@ -94,8 +81,9 @@ const SearchResult = ({
           </Button>
         </Modal.Footer>
       </Modal>
+      <div>{bioImageDocumentId.search_string}</div>
 
-      <Card id={bioImageDocumentId} style={{ marginTop: "5%", border: "#fff" }}>
+      <Card id={bioImageDocumentId} style={{ marginTop: "5%", border: "#fff"}}>
         <div className="hvrbox">
           <Button
             variant="flat"
@@ -109,18 +97,25 @@ const SearchResult = ({
               style={{ width: "100%", height: "210px" }}
             />
             <div className="hvrbox-layer_top">
-              <div className="hvrbox-text">
-                Search These Images?
+              <div className="hvrbox-text" style={{textTransform: "capitalize" }}>
+                Search {bioImageDocumentId.replace("_", " ").replace("=", " ").replace("value", " ").replace(".", " ").replace("id", " ").replace("_", " ")
+                .replace("alic", "Alice Mulga").replace("capetrib", "Cape Tribulation").replace("cblp", "Cumberland").replace("clpm", "Calperum Mallee")
+                .replace("fnqr robson", "Robson Creek").replace("gwwl", "Great Western Woodlands").replace("lfld", "Litchfield").replace("mgrl", "Mitchell Grass Rangeland")
+                .replace("lai", "Leaf Area Index").replace("na", " ")}?
                 <br />
                 <img src="/img/icons/Bioimages icon.svg" alt="bioimages icon" width="100px" /> <br />
                 <span className="center"></span>
+         
               </div>
+            
             </div>{" "}
-            <strong>Site:</strong> {bioImageDocument.site_id.label} <br />
+            <strong>Site:</strong> {bioImageDocument.site_id.label}{" "}  <br />
             <strong>Image Type:</strong>{" "}
             {bioImageDocument.image_type.value[0].toUpperCase() +
-              bioImageDocument.image_type.value.substr(1)}{" "}
-            <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "}
+              bioImageDocument.image_type.value.substr(1)}{" "} 
+            <strong>Image Count:</strong> {bioImageDocument.doc_count}{" "} <br />
+            <strong>Plot:</strong> {bioImageDocument.plot.value}{" "}
+            <strong>Visit:</strong> {bioImageDocument.site_visit_id}{" "}
           </Button>
         </div>
 
@@ -148,7 +143,7 @@ const SearchResult = ({
         </Form>
       </Card>
     </Col>
-    </>
+
   );
 };
 export default SearchResult;

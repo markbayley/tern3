@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const ImageFilter = ({ value, handleFilter }) => {
+const ImageFilter = ({ value, handleFilter, header }) => {
   return ( 
      <div className="">
        <div key="{key}">
@@ -9,12 +9,11 @@ const ImageFilter = ({ value, handleFilter }) => {
            <Form.Check
              type="checkbox"
              style={{ textTransform: "capitalize" }}
-             label={value.label}
-             onClick={handleFilter}
-             
-           />
-           {/* {value.doc_count} */}
+             label={value.label + " (" + value.doc_count + ")"}
+             onClick={handleFilter}            
+           />  
          </Form.Group>
+      
        </div>
      </div>
   );

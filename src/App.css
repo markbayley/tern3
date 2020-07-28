@@ -806,7 +806,7 @@
   
   .leaflet-container {
 	height: 80vh;
-	width: fluid;
+
   }
   
   .map-container {
@@ -817,8 +817,6 @@
   .map-frame {
 	height: 100%;
 	width: 100%;
-  
-	/*   We use outline over border as has issues in some cases */
   }
   
   #map-id {
@@ -1000,6 +998,10 @@
   }
 
 
+ .icon {
+	 display: 'flex';
+	 justify-content: 'flex-end';
+ }
 
 
 
@@ -1008,7 +1010,7 @@
  .filterbar {
 
   z-index: "9";
-  height: 190vh; 
+  height: 200vh; 
  }
 
  @media (max-width: 1024px) {
@@ -1021,9 +1023,27 @@
 	}
 
 	.filterbar {
-		height: 80vh;
-	
+		height: 80vh;	
 	}
+
+	.site-branding {
+		display: none;
+	}
+
+	 .login {
+		display: none;
+	} 
+
+	.biologo {
+		display: none;
+	}
+
+
+	 .ternlogo {
+		 display: none;
+	 }
+
+
   }
   @media (max-width: 767px) {
 	.footer-col {
@@ -1041,10 +1061,16 @@
 		height: 80vh;		
 	}
 
-	
+	/* html {
+		overflow:   scroll;
+	  }
+	  ::-webkit-scrollbar {
+		  width: 0px;
+		  background: transparent;
+	  } */ 
+  
 
-
-  }
+	}	  
   @media (max-width: 400px) {
 	.above-header-section .above-header-section-1 {
 	  width: 40% !important;
