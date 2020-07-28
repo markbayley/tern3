@@ -66,9 +66,9 @@ const ImageFilterType = ({ imageFilter, header, handleFilter }) => {
                   <ImageFilter
                     value={imageFilter[key1]}
                     key={header + "=" + imageFilter[key1].key}
-                    handleFilter={() =>
-                      handleFilter(header + "=" + imageFilter[key1].key)
-                    }
+                    // handleFilter={() =>
+                    //   handleFilter(header + "=" + imageFilter[key1].key)
+                    // }
                   />
                 ))}
               </ul>
