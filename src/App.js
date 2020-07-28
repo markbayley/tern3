@@ -12,7 +12,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file */
 import TopBar from "./components/TopBar";
 import Footer from "./components/Footer";
 import { Col, Row } from "react-bootstrap";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/test/SearchBar";
 import DateRange from "./components/DateRange";
 import BreadCrumb from "./components/BreadCrumb";
 import SearchEngine from "./components/bio-search/SearchEngine";
@@ -25,7 +25,7 @@ import FavouriteHeader from "./components/bio-favourites/FavouriteHeader";
 import FilterHeader from "./components/bio-image-search/FilterHeader";
 import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
-import { FeatureGroup, Circle } from 'react-leaflet';
+import { FeatureGroup, Circle } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import Search from "./components/Search";
 import TopHeader from "./components/TopHeader";
@@ -50,7 +50,6 @@ import TopHeader from "./components/TopHeader";
 //   );
 // }
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -68,7 +67,6 @@ class App extends React.Component {
       lat: -26.47,
       lng: 134.02,
       zoom: 5,
-    
     };
   }
 
@@ -81,7 +79,6 @@ class App extends React.Component {
     //   }
     // }
   }*/
-
 
   fetchFavourites() {
     // Where we're fetching data from
@@ -137,10 +134,8 @@ class App extends React.Component {
     console.log("clicked marker", this.state);
   }
 
-
-
   resetFilter() {
-    this.setState({selectedFilter:{ site_id: {}}})
+    this.setState({ selectedFilter: { site_id: {} } });
     console.log("clicked refresh button", this.state);
   }
 
@@ -191,30 +186,30 @@ class App extends React.Component {
       key: "selection",
     };
 
-
     return (
       <div id="map">
-      
         <TopHeader />
         <Search />
- 
+
         <Row>
           {/*Filter SideBar*/}
           <Col
             className="filterbar"
             xl={2}
-            style={{ zIndex: "9" , margin: "0", paddingRight: "0"}}
+            style={{ zIndex: "9", margin: "0", paddingRight: "0" }}
           >
-            <FilterHeader resetFilter={()=> {this.resetFilter()}}/>
+            <FilterHeader
+              resetFilter={() => {
+                this.resetFilter();
+              }}
+            />
             <ImageSearchEngine
               imageFilters={this.state.filters}
               handleFilter={(i) => {
                 console.log("clicked the facet", this.props, this.state);
-                this.handleFilter(i)}
-              }
+                this.handleFilter(i);
+              }}
             />
-
-           
 
             <DateRange />
             <FavouriteHeader />
@@ -230,7 +225,7 @@ class App extends React.Component {
             style={{
               height: "80vh",
               padding: "0%",
-              margin: "0%"      
+              margin: "0%",
             }}
           >
             <div className="map-container">
@@ -263,21 +258,16 @@ class App extends React.Component {
                       attribution='&copy; <a href="http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png">OpenStreetMap</a> contributors'
                       url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     />
-                  
-             
-                  <FeatureGroup>
+
+                    <FeatureGroup>
                       <EditControl
-                     
-                        position='topright'
-                        
+                        position="topright"
                         onEdited={this._onEditPath}
                         onCreated={this._onCreate}
                         onDeleted={this._onDeleted}
-                    
                       />
                       <Circle center={[51.51, -0.06]} radius={200} />
                     </FeatureGroup>
-             
 
                     {/* API Markers */}
                     {Object.keys(this.state.hits).map((index) => (
@@ -286,7 +276,11 @@ class App extends React.Component {
                         location={index}
                         key={index}
                         onClick={() => {
-                          console.log("clicked the marker", this.props, this.state);
+                          console.log(
+                            "clicked the marker",
+                            this.props,
+                            this.state
+                          );
                           this.handleFilter("site_id=" + index);
                           // scroller.scrollTo("gallery", {
                           //   duration: 1000,
@@ -300,9 +294,8 @@ class App extends React.Component {
               </div>
               {/*End of Leaflet  Map */}
 
-              <BreadCrumb/>
-             
-            
+              <BreadCrumb />
+
               {/*Photo Gallery */}
               <div id="gallery"></div>
               <SearchEngine
@@ -310,8 +303,8 @@ class App extends React.Component {
                 aggregation={this.state.aggregation}
                 onBioImageClick={(i) => {
                   console.log("clicked the image", this.props, this.state);
-                  this.handleFilter(i)}
-                }
+                  this.handleFilter(i);
+                }}
               />
             </div>
             <ul>{favs}</ul>

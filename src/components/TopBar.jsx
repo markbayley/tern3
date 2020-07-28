@@ -4,17 +4,10 @@ import TERNDataDropdown from "./dropdowns/TERNDataDropdown";
 import CommunityDropdown from "./dropdowns/CommunityDropdown";
 import CoESRADropdown from "./dropdowns/CoESRADropdown";
 import DataVisualiserDropdown from "./dropdowns/DataVisualiserDropdown";
-import MainBanner from "./banners/MainBanner";
-import SignIn from "./signin/SignIn";
-import MainFooter from "./footers/MainFooter";
-import NavBar from "./SearchBar";
-import BioimagesSubFooter from "./footers/BioimagesSubFooter";
-//import MapSearch from './MapSearch';
-import MainMenu from "./signin/MainMenu";
 
 import { Col, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//import LandingPage from "./LandingPage/LandingPage";
+
 
 export default function TopBar() {
   return (
